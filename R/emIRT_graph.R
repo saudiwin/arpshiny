@@ -6,7 +6,7 @@
 plot.emIRT <- function(x,rc_data=NULL,legis.names=NULL,parties=NULL,
                        CI=TRUE,subset_name=NULL,hjust_top=1.5,
                        hjust_bottom=-0.5,use_rc_data=TRUE,
-                       subset_type='party',transparency=FALSE,timepoints=NULL,timelabels=NULL) {
+                       subset_type='party',transparency=FALSE,timepoints=NULL,timelabels=NULL,x_axis=NULL) {
 
   #Obtain ideal point estimates and party labels/MP names for each of the models
 
@@ -190,6 +190,10 @@ plot.emIRT <- function(x,rc_data=NULL,legis.names=NULL,parties=NULL,
                                                                                    legend.background=element_blank(),
                                                                                    panel.border=element_blank()) + xlab("Ideal Point Score (Government v. Opposition)") +
     ylab("") + scale_colour_brewer(palette="Set1",guide=guide_legend(title="Parties"))
+
+  if(!is.null(x_axis)) {
+    outobj <- outobj + scale_x_continuous(labels=x_axis)
+  }
 
   return(outobj)
 }
