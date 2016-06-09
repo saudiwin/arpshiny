@@ -35,8 +35,8 @@ plot.emIRT <- function(x,rc_data=NULL,legis.names=NULL,parties=NULL,
   if(!('dynIRT' %in% class(x))) {
     names_up <- ifelse(legis_means>0,legis.names,NA)
     names_down <- ifelse(legis_means<=0,legis.names,NA)
-    names_up[which(legis_means==max(legis_means))] <- NA
-    names_down[which(legis_means==min(legis_means))] <- NA
+    #names_up[which(legis_means==max(legis_means))] <- NA
+    #names_down[which(legis_means==min(legis_means))] <- NA
     upbnd <- 1.96*x$bse$x + legis_means
     lbnd <- legis_means - 1.96*x$bse$x
     if(!is.null(x$bse) && !is.null(parties)) {
