@@ -1,7 +1,6 @@
 # Functions for graphing with emIRT package
 # Robert Kubinec v0.2 6/7/2016
 # Modified for use with Shiny
-
 #' @import ggplot2
 #' @export
 plot.emIRT <- function(x,rc_data=NULL,legis.names=NULL,parties=NULL,
@@ -54,7 +53,7 @@ plot.emIRT <- function(x,rc_data=NULL,legis.names=NULL,parties=NULL,
 
       if(!is.null(subset_name) && subset_type=='individual') {
         data <- data[data$legis.names %in% subset_name,]
-        outobj <- ggplot2::ggplot(data,aes(x=legis_means,y=reorder(legis.names,legis_means))) + my_theme +
+        outobj <- ggplot2::ggplot(data,aes(x=legis_means,y=reorder(legis.names,legis_means))) + my_theme() +
           geom_point() + geom_text(aes(label=names_up),hjust=hjust_top,check_overlap=TRUE) +
           geom_text(aes(label=names_down),hjust=hjust_bottom,check_overlap=TRUE) + theme(axis.text.y=element_blank(),axis.ticks.y=element_blank()) + xlab("Ideal Point Score") +
           ylab("")
@@ -183,7 +182,7 @@ plot.emIRT <- function(x,rc_data=NULL,legis.names=NULL,parties=NULL,
 
 
 
-  outobj <- outobj +  my_theme + geom_point() + geom_text(aes(label=names_up),hjust=hjust_top,check_overlap=TRUE) +
+  outobj <- outobj +  my_theme() + geom_point() + geom_text(aes(label=names_up),hjust=hjust_top,check_overlap=TRUE) +
     geom_text(aes(label=names_down),hjust=hjust_bottom,check_overlap=TRUE) + theme(axis.text.y=element_blank(),
                                                                                    axis.ticks.y=element_blank(),
                                                                                    panel.background=element_blank(),
