@@ -1,4 +1,6 @@
 # Define ggplot_theme objects
+
+#' @import ggplot2
 #' @export
 my_theme <- theme_bw() + theme(
   panel.grid.major=element_blank(), # Remove all gridlines

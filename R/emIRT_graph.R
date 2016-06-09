@@ -2,7 +2,7 @@
 # Robert Kubinec v0.2 6/7/2016
 # Modified for use with Shiny
 
-
+#' @import ggplot2
 #' @export
 plot.emIRT <- function(x,rc_data=NULL,legis.names=NULL,parties=NULL,
                        CI=TRUE,subset_name=NULL,hjust_top=1.5,
