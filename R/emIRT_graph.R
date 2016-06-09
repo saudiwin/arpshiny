@@ -3,7 +3,7 @@
 # Modified for use with Shiny
 
 
-
+#' @export
 plot.emIRT <- function(x,rc_data=NULL,legis.names=NULL,parties=NULL,
                        CI=TRUE,subset_name=NULL,hjust_top=1.5,
                        hjust_bottom=-0.5,use_rc_data=TRUE,
