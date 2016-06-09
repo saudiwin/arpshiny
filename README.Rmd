@@ -1,0 +1,16 @@
+---
+output:
+  md_document:
+    variant: markdown_github
+---
+
+This package is used exclusively to load code and data for the ARP Shiny application at http://kubinec.shinyapps.io/ARP_Shiny.
+
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
