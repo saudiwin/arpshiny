@@ -2,7 +2,7 @@ Package: arpshiny
 Type: Package
 Title: Load files and functions for the ARP Shiny application at
     kubinec.shinyapps.io/ARP_Shiny
-Version: 0.1.3
+Version: 0.1.4
 Date: 2016-06-09
 Authors@R: person("Robert", "Kubinec", email = "rmk7xy@virginia.edu", role = c("aut", "cre"))
 Description: This package only has functions and vote data files from the
