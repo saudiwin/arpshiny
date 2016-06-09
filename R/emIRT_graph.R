@@ -7,7 +7,7 @@ plot.emIRT <- function(x,rc_data=NULL,legis.names=NULL,parties=NULL,
                        CI=TRUE,subset_name=NULL,hjust_top=1.5,
                        hjust_bottom=-0.5,use_rc_data=TRUE,
                        subset_type='party',transparency=FALSE,timepoints=NULL,timelabels=NULL,
-                       x_axis_breaks=NULL,x_axis_labels=NULL) {
+                       x_axis_labels=NULL) {
 
   #Obtain ideal point estimates and party labels/MP names for each of the models
 
@@ -49,11 +49,13 @@ plot.emIRT <- function(x,rc_data=NULL,legis.names=NULL,parties=NULL,
     } else if (is.null(x$bse) && is.null(parties))  {
       data <- data.frame(legis_means,legis.names,names_up,names_down)
     }
+    x_axis_breaks <- c(-1.5*sd(data$legis_means),0,1.5*sd(data$legis_means))
 
     if(!is.null(legis.names) && is.null(parties)) {
 
       if(!is.null(subset_name) && subset_type=='individual') {
         data <- data[data$legis.names %in% subset_name,]
+        x_axis_breaks <- c(-1.5*sd(data$legis_means),0,1.5*sd(data$legis_means))
         outobj <- ggplot2::ggplot(data,aes(x=legis_means,y=reorder(legis.names,legis_means))) + my_theme() +
           geom_point() + geom_text(aes(label=names_up),hjust=hjust_top,check_overlap=TRUE) +
           geom_text(aes(label=names_down),hjust=hjust_bottom,check_overlap=TRUE) + theme(axis.text.y=element_blank(),axis.ticks.y=element_blank()) + xlab("Ideal Point Score") +
@@ -65,6 +67,7 @@ plot.emIRT <- function(x,rc_data=NULL,legis.names=NULL,parties=NULL,
 
       if(!is.null(subset_name) && subset_type=='individual') {
         data <- data[data$legis.names %in% subset_name,]
+        x_axis_breaks <- c(-1.5*sd(data$legis_means),0,1.5*sd(data$legis_means))
         outobj <- ggplot2::ggplot(data,aes(x=legis_means,y=reorder(legis.names,legis_means),colour=parties))
       } else if(!is.null(subset_name) && subset_type=='party') {
         data <- data[data$parties %in% subset_name,]
@@ -143,6 +146,7 @@ plot.emIRT <- function(x,rc_data=NULL,legis.names=NULL,parties=NULL,
 
       if(!is.null(subset_name) && subset_type=='individual') {
         data <- data[data$legis.names %in% subset_name,]
+        x_axis_breaks <- c(-1.5*sd(data$legis_means),0,1.5*sd(data$legis_means))
         # Filter NAs to prevent blank facets
         data <- data[!is.na(data$legis_means),]
         outobj <- ggplot2::ggplot(data,aes(x=legis_means,y=reorder(legis.names,legis_means)))
@@ -153,11 +157,13 @@ plot.emIRT <- function(x,rc_data=NULL,legis.names=NULL,parties=NULL,
 
       if(!is.null(subset_name && subset_type=='individual')) {
         data <- data[data$legis.names %in% subset_name,]
+        x_axis_breaks <- c(-1.5*sd(data$legis_means),0,1.5*sd(data$legis_means))
         # Filter NAs to prevent blank facets
         data <- data[!is.na(data$legis_means),]
         outobj <- ggplot2::ggplot(data,aes(x=legis_means,y=reorder(legis.names,legis_means),colour=parties))
       } else if(!is.null(subset_name && subset_type=='party')) {
         data <- data[data$parties %in% subset_name,]
+        x_axis_breaks <- c(-1.5*sd(data$legis_means),0,1.5*sd(data$legis_means))
         # Filter NAs to prevent blank facets
         data <- data[!is.na(data$legis_means),]
         outobj <- ggplot2::ggplot(data,aes(x=legis_means,y=reorder(legis.names,legis_means),colour=parties))
@@ -193,7 +199,8 @@ plot.emIRT <- function(x,rc_data=NULL,legis.names=NULL,parties=NULL,
     ylab("") + scale_colour_brewer(palette="Set1",guide=guide_legend(title="Parties"))
 
   if(!is.null(x_axis_breaks) && !is.null(x_axis_labels)) {
-    outobj <- outobj + scale_x_continuous(breaks=x_axis_breaks,labels=x_axis_labels)
+    outobj <- outobj + scale_x_continuous(breaks=x_axis_breaks,labels=x_axis_labels,expand=c(-2*sd(data$legis_means),
+                                                                                             2*sd(data$legis_means)))
   }
 
   return(outobj)
