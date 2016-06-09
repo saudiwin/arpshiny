@@ -9,5 +9,5 @@ my_theme <- function() {
   strip.text = element_text(face="bold",size=12), # Facet_wrap titles
   axis.title = element_text(face="bold",size=12), # All axis titles
   axis.text.x = element_text(face="bold",size=10))
-  return(theme)
+  return(this_theme)
 }
