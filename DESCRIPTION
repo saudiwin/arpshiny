@@ -1,9 +1,11 @@
 Package: arpshiny
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Load files and functions for the ARP Shiny application at kubinec.shinyapps.io/ARP_Shiny
 Version: 0.1
 Date: 2016-06-09
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Authors@R: person("Robert", "Kubinec", email = "rmk7xy@virginia.edu", role = c("aut", "cre"))
+Description: This package only has functions and vote data files from the Tunisian parliament.
+License: GPL-3
 LazyData: TRUE
+Imports: ggplot2,
+    reshape2
